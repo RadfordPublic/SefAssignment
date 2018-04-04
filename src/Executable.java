@@ -3,14 +3,18 @@ package assignment;
 import java.util.Scanner;
 
 public class Executable {
+	
+	private static boolean checked=false;
 
 	public static void main(String[] args) {
 		User cs1 = new CasualStaff("e1235", "TestStaff", 1298, "TestEmail");
-		logIntoSystem(cs1);
-		
+		do {
+			logIntoSystem(cs1);
+		} while (!checked);
+
 	}
 
-	public static boolean logIntoSystem(User cs1) {
+	public static void logIntoSystem(User cs1) {
 		String enteredID;
 		String enteredPass;
 
@@ -20,14 +24,18 @@ public class Executable {
 
 		System.out.println("Enter your Password: ");
 		enteredPass = kb.nextLine();
+
+		if (cs1.getEmployeeID().compareTo(enteredID) == 0 && enteredPass.compareTo( "Password")==0) {
+			System.out.println("Succefully loged into the system");
+			//Do something
+			checked=true;
+		} 
 		
-		
-		
-		//if matches
-	return true;
-	
-	//else
-	//return false;
+		else
+		{
+			System.out.println("Login Fail. Try Again.");
+			checked=false;
+		}
 	}
 
 }
